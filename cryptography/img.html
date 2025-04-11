@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Media Encryption Demo</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #0f0f0f;
+      color: #d4ffd4;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00ff88;
+      margin-bottom: 40px;
+    }
+
+    .intro {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ff88;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #1a1a1a;
+      margin-bottom: 40px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,255,128,0.3);
+    }
+
+    .card:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .card img {
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .card-content h2 {
+      color: #00ff88;
+    }
+
+    .card-content p {
+      color: #b2ffcc;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #00ff88;
+      color: #000;
+      padding: 10px 18px;
+      margin-top: 10px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #00cc6a;
+    }
+
+    .audio-player {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .text-content {
+      max-height: 100px;
+      overflow-y: auto;
+      border: 1px solid #333;
+      padding: 10px;
+      background-color: #000;
+      color: #00ff88;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        flex-direction: column !important;
+      }
+
+      .card img {
+        width: 100%;
+      }
+
+      .card-content {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+          <div class="logo">
+            <img src="your-logo.png" alt="Logo" />
+            <span>Encryptify</span>
+          </div>
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li class="dropdown">
+              <a href="#">Media Types ▾</a>
+              <ul class="dropdown-menu">
+                <li><a href="#image">Image Encryption</a></li>
+                <li><a href="#audio">Audio Encryption</a></li>
+                <li><a href="#text">Text Encryption</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      
+      <style>
+        .navbar {
+          background-color: #111;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 15px 30px;
+          box-shadow: 0 2px 5px rgba(0, 255, 136, 0.4);
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+        }
+      
+        .logo {
+          display: flex;
+          align-items: center;
+          color: #00ff88;
+          font-weight: bold;
+          font-size: 1.5em;
+        }
+      
+        .logo img {
+          height: 40px;
+          margin-right: 10px;
+        }
+      
+        .nav-links {
+          list-style: none;
+          display: flex;
+          gap: 25px;
+        }
+      
+        .nav-links li {
+          position: relative;
+        }
+      
+        .nav-links a {
+          text-decoration: none;
+          color: #d4ffd4;
+          font-weight: bold;
+          padding: 8px 12px;
+          border-radius: 5px;
+          transition: background-color 0.3s;
+        }
+      
+        .nav-links a:hover {
+          background-color: #00ff88;
+          color: #000;
+        }
+      
+        .dropdown-menu {
+          display: none;
+          position: absolute;
+          top: 35px;
+          left: 0;
+          background-color: #1a1a1a;
+          box-shadow: 0 4px 8px rgba(0, 255, 136, 0.2);
+          border-radius: 6px;
+          padding: 10px 0;
+          z-index: 999;
+        }
+      
+        .dropdown-menu li {
+          width: 180px;
+          padding: 5px 15px;
+        }
+      
+        .dropdown:hover .dropdown-menu {
+          display: block;
+        }
+      
+        .dropdown-menu a {
+          display: block;
+          padding: 8px;
+          color: #d4ffd4;
+        }
+      
+        .dropdown-menu a:hover {
+          background-color: #00ff88;
+          color: #000;
+        }
+      </style>
+      
+  <h1>Media Encryption & Decryption</h1>
+
+  <div class="intro">
+    <p>This demo illustrates how various media types like images, audio, and text are encrypted and decrypted using secure algorithms. With a cyberpunk-inspired black and green theme, explore how encryption safeguards sensitive data across formats, ensuring digital safety in a connected world.</p>
+  </div>
+
+  <!-- Image Encryption -->
+  <div class="card">
+    <img src="https://source.unsplash.com/800x500/?technology,cyber" alt="Encrypted Image" />
+    <div class="card-content">
+      <h2>Image Encryption</h2>
+      <p>Image encryption ensures your visual data stays safe from unauthorized access, manipulation, or misuse. This is essential for fields like healthcare, surveillance, and legal documentation, where confidentiality is critical. Techniques such as AES and pixel scrambling make the image unreadable without a key, securing both privacy and intellectual property.</p>
+      <a href="#" class="btn">Encrypt / Decrypt</a>
+    </div>
+  </div>
+
+  <!-- Audio Encryption -->
+  <div class="card">
+    <img src="https://source.unsplash.com/800x500/?audio,waveform" alt="Encrypted Audio" />
+    <div class="card-content">
+      <h2>Audio Encryption</h2>
+      <p>Audio encryption protects voice data, including calls, meetings, and recordings. It is especially important in law enforcement, journalism, and business to prevent eavesdropping or unauthorized redistribution. Encrypting audio ensures only intended recipients can access the content, preserving both confidentiality and trust.</p>
+      <audio controls class="audio-player">
+        <source src="#" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <a href="#" class="btn">Encrypt / Decrypt</a>
+    </div>
+  </div>
+
+  <!-- Text Encryption -->
+  <div class="card">
+    <img src="https://source.unsplash.com/800x500/?code,security" alt="Encrypted Text" />
+    <div class="card-content">
+      <h2>Text Encryption</h2>
+      <p>Text encryption is the cornerstone of secure communication. Whether it’s a private message, sensitive document, or authentication code, encrypting text ensures that only authorized users can view the content. It’s widely used in email systems, messaging apps, and databases to prevent identity theft, fraud, and data leaks.</p>
+      <div class="text-content">
+        This is a sample text that would be encrypted. The quick brown fox jumps over the lazy dog.
+      </div>
+      <a href="#" class="btn">Encrypt / Decrypt</a>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-content">
+      <h3>Contact Us</h3>
+      <p>Get in touch through the platforms below or drop us an email.</p>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/your-profile" target="_blank">LinkedIn</a>
+        <a href="https://github.com/your-username" target="_blank">GitHub</a>
+        <a href="https://instagram.com/your-username" target="_blank">Instagram</a>
+        <a href="mailto:youremail@example.com">Email</a>
+      </div>
+    </div>
+  </footer>
+  
+  <style>
+    .footer {
+      background-color: #111;
+      color: #d4ffd4;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 50px;
+      box-shadow: 0 -2px 5px rgba(0, 255, 136, 0.2);
+    }
+  
+    .footer h3 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      color: #00ff88;
+    }
+  
+    .footer p {
+      font-size: 1em;
+      margin-bottom: 20px;
+      color: #bfffcf;
+    }
+  
+    .footer .socials a {
+      color: #d4ffd4;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 1.1em;
+      transition: color 0.3s;
+    }
+  
+    .footer .socials a:hover {
+      color: #00ff88;
+    }
+  </style>
+  
+</body>
+</html>

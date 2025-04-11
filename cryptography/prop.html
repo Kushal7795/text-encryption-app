@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SecurePath - Encryption Portal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0e0e0e;
+      color: #00ff88;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #111;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 0 15px #00ff88;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-placeholder {
+      height: 40px;
+      width: 120px;
+      background: linear-gradient(90deg, #00ff88, #00ffaa);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #000;
+      font-size: 1rem;
+    }
+
+    nav a {
+      color: #00ff88;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 2rem 0 1rem;
+      font-size: 2.5rem;
+      color: #00ffaa;
+    }
+
+    .glow-text {
+      color: #00ffcc;
+      text-shadow:
+        0 0 2px #00ffcc,
+        0 0 4px #00ffcc;
+      transition: transform 0.2s ease-out;
+      will-change: transform;
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .background-glow::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 255, 0, 0.1), transparent 60%);
+      animation: pulse 5s infinite ease-in-out;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.2;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.3;
+      }
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+      color: #c1fce5;
+      padding: 0 1rem;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 3rem 0;
+    }
+
+    .card {
+      width: 80%;
+      background-color: #1a1a1a;
+      border: 1px solid #00ff88;
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 0 15px #00ff88;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .card:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .card img {
+      width: 45%;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00ff88;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #00ffcc;
+      font-size: 1.8rem;
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      color: #c1fce5;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #00ff88;
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 10px #00ff88;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #00cc66;
+    }
+
+    footer {
+      background-color: #111;
+      color: #00ff88;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #00ff88;
+      box-shadow: 0 -5px 15px #00ff88;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .social-icons a {
+      color: #00ff88;
+      font-size: 1.8rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #ffffff;
+    }
+
+    .footer-text {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .hero {
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+    }
+/* Reset some default styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 20px;
+  background-color: #000; /* Black background */
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 26px;
+  font-weight: 600;
+  color: #00ff00; /* Bright green text */
+}
+#introVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain; /* Keeps aspect ratio without cropping */
+      z-index: 1000;
+      background-color: black;
+    }
+
+    #mainContent {
+      display: none;
+      padding: 20px;
+    }
+  </style>
+  
+</head>
+<body class="relative background-glow">
+ <!-- Video element -->
+ <video id="introVideo" autoplay muted>
+    <source src="F:\Kuidu\cryptography\WhatsApp Video 2025-04-11 at 00.51.49_20a3c640.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <header>
+    <div class="logo-container">
+        <img src="F:\Kuidu\cryptography\ChatGPT Image Apr 11, 2025, 01_41_04 AM.png" alt="SecurePath Logo" class="logo-img">
+        <span class="logo-text"><a href="F:\Kuidu\cryptography\prop.html">SecurePath</span></a>
+      </div>
+    <nav>
+      <a href="F:\Kuidu\cryptography\prop.html">Home</a>
+      <a href="F:\Kuidu\cryptography\blog.html">Blog</a>
+      <a href="F:\Kuidu\cryptography\contact.html">Contact</a>
+      <a href="F:\Kuidu\cryptography\sigup.html">Login or Signup</a>
+      <a href="F:\Kuidu\cryptography\cryptography\index.html">Text</a>
+      <a href="F:\Kuidu\cryptography\cryptography\image.html">Image</a>
+      <a href="F:\Kuidu\cryptography\cryptography\audio.html">Audio</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1 id="followText" class="glow-text">Enter The World of Secure Network</h1>
+  </div>
+
+  <div class="intro">
+    <!-- Content Section -->
+  <h1>Media Encryption & Decryption</h1>
+
+  <div class="intro">
+    <p>This Website Gives an overview of how various media types like images, audio, and text are encrypted and decrypted using secure algorithms. With a cyberpunk-inspired black and green aesthetic, this portal showcases next-gen security tools in an intuitive interface.</p>
+  </div>
+    <p>Experience top-tier encryption tools for text, images, and audio. SecurePath empowers you to safeguard your digital information with industry-grade protection and ease of use.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <img src="F:\Kuidu\cryptography\download1.jpeg" alt="Text Encryption">
+      <div>
+        <h2>Text Encryption</h2>
+        <p>Encrypt and decrypt text securely using advanced RSA-based encryption techniques. Ideal for messages, passwords, and more.</p>
+        <a href="F:\Kuidu\cryptography\cryptography\index.html" class="btn">Encrypt Text</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="F:\Kuidu\cryptography\download2.jpeg" alt="Image Encryption">
+      <div>
+        <h2>Image Encryption</h2>
+        <p>Protect your images using pixel-level encryption. Prevent unauthorized access or tampering with private images.</p>
+        <a href="F:\Kuidu\cryptography\cryptography\image.html" class="btn">Encrypt Image</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="F:\Kuidu\cryptography\download3.jpeg" alt="Audio Encryption">
+      <div>
+        <h2>Audio Encryption</h2>
+        <p>Secure your voice and audio recordings using audio waveform encryption techniques. Keep conversations private and protected.</p>
+        <a href="F:\Kuidu\cryptography\cryptography\audio.html" class="btn">Encrypt Audio</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Follow us for updates</p>
+    <div class="social-icons">
+      <a href="https://github.com/Kushal7795"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/kushal-m-7a5777218/"><i class="fab fa-linkedin"></i></a>
+      <a href="https://x.com/KushalM74444037"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p class="footer-text">&copy; 2025 SecurePath. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const text = document.getElementById("followText");
+
+    document.addEventListener("mousemove", (e) => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      const offsetX = (e.clientX - centerX) * 0.02;
+      const offsetY = (e.clientY - centerY) * 0.02;
+
+      text.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    });
+
+    const video = document.getElementById('introVideo');
+    const mainContent = document.getElementById('mainContent');
+
+    // When the video ends, hide it and show the main content
+    video.addEventListener('ended', () => {
+      video.style.display = 'none';
+      mainContent.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

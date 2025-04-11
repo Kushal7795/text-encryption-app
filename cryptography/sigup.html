@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login with OTP | Tech Wiser</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("k5mVnAlU3zFPsa0RY"); // Replace with your actual Public Key
+</script>
+
+</head>
+<body class="bg-black text-green-300 flex items-center justify-center min-h-screen">
+
+  <div class="bg-gray-900 p-8 rounded-xl w-full max-w-md shadow-lg">
+    <h2 class="text-3xl font-bold text-center mb-6 text-green-400">Login to Tech Wiser</h2>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="space-y-5">
+      <div>
+        <label class="block mb-1 text-green-300">Name</label>
+        <input type="text" id="name" required class="w-full px-4 py-2 rounded-lg bg-black text-green-200 border border-green-500 focus:outline-none" />
+      </div>
+
+      <div>
+        <label class="block mb-1 text-green-300">Email</label>
+        <input type="email" id="email" required class="w-full px-4 py-2 rounded-lg bg-black text-green-200 border border-green-500 focus:outline-none" />
+      </div>
+
+      <button type="button" onclick="sendOTP()" class="bg-green-500 text-black font-bold px-4 py-2 w-full rounded-lg hover:bg-green-400 transition">Send OTP</button>
+    </form>
+
+    <!-- OTP Section -->
+    <form id="otpForm" class="space-y-5 mt-6 hidden">
+      <div>
+        <label class="block mb-1 text-green-300">Enter OTP</label>
+        <input type="text" id="otpInput" required class="w-full px-4 py-2 rounded-lg bg-black text-green-200 border border-green-500 focus:outline-none" />
+      </div>
+
+      <button type="button" onclick="verifyOTP()" class="bg-green-500 text-black font-bold px-4 py-2 w-full rounded-lg hover:bg-green-400 transition"><a href="F:\Kuidu\cryptography\prop.html">Verify OTP</button></a>
+    </form>
+
+    <!-- Message -->
+    <p id="message" class="mt-4 text-center text-green-400 font-semibold"></p>
+  </div>
+<script>
+  function sendOTP() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+  
+    if (!name || !email) {
+      alert("Please enter your name and email.");
+      return;
+    }
+  
+    // Generate 6-digit OTP
+    generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+  
+    // Send Email via EmailJS
+    emailjs.send("service_ag5tzgs", "template_h7y3sfg", {
+        user_name: name,
+  user_email: email,  // <== This should match your template's {{user_email}}
+  otp: generatedOTP,
+    }).then(() => {
+      document.getElementById("otpForm").classList.remove("hidden");
+      document.getElementById("message").textContent = "OTP sent to your email!";
+    }).catch((error) => {
+      console.error("EmailJS error:", error);
+      alert("Failed to send OTP. Try again.");
+    });
+  }
+  </script>
+</body>
+</html>

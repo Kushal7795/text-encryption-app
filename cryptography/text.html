@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Encrypt/Decrypt Text</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('encrypt.jpg');
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+      width: 90%;
+      max-width: 700px;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #00ffc8;
+    }
+
+    textarea, input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: #222;
+      color: white;
+      font-size: 16px;
+      resize: none;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #00ffc8;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px 5px;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00d9aa;
+    }
+
+    .nav-button {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .nav-button:hover {
+      background-color: #d32f2f;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .buttons button {
+      flex: 1 1 45%;
+      margin: 10px;
+    }
+
+    @media (max-width: 600px) {
+      button, .buttons button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Encrypt & Decrypt Message</h2>
+
+    <!-- Input Section -->
+    <textarea id="inputText" placeholder="Enter your message here..."></textarea>
+    <input type="password" id="password" placeholder="Enter password" />
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button onclick="encryptText()">Encrypt</button>
+      <button onclick="decryptText()">Decrypt</button>
+    </div>
+
+    <!-- Output Section -->
+    <textarea id="outputText" readonly placeholder="Output will appear here..."></textarea>
+
+    <!-- Navigation -->
+    <div class="buttons">
+      <button class="nav-button" onclick="window.location.href='thank.html'">End</button>
+    </div>
+  </div>
+
+  <script>
+    function xorEncryptDecrypt(input, key) {
+      let result = '';
+      for (let i = 0; i < input.length; i++) {
+        const charCode = input.charCodeAt(i) ^ key.charCodeAt(i % key.length);
+        result += String.fromCharCode(charCode);
+      }
+      return result;
+    }
+
+    function encryptText() {
+      const text = document.getElementById("inputText").value;
+      const password = document.getElementById("password").value;
+
+      if (!text || !password) {
+        alert("Please enter both text and password.");
+        return;
+      }
+
+      const encrypted = xorEncryptDecrypt(text, password);
+      const base64 = btoa(encrypted); // convert to base64 to make it safe to display
+      document.getElementById("outputText").value = base64;
+    }
+
+    function decryptText() {
+      const base64 = document.getElementById("inputText").value;
+      const password = document.getElementById("password").value;
+
+      if (!base64 || !password) {
+        alert("Please enter both encrypted text and password.");
+        return;
+      }
+
+      try {
+        const encrypted = atob(base64); // decode base64
+        const decrypted = xorEncryptDecrypt(encrypted, password);
+        document.getElementById("outputText").value = decrypted;
+      } catch (e) {
+        alert("Decryption failed. Please check your password or input.");
+      }
+    }
+  </script>
+</body>
+</html>

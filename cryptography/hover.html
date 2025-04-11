@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SecurePath - Encryption Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0e0e0e;
+      color: #00ff88;
+    }
+
+    header {
+      background-color: #111;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 0 15px #00ff88;
+    }
+
+    header img {
+      height: 40px;
+    }
+
+    nav a {
+      color: #00ff88;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 2rem 0 1rem;
+      font-size: 2.5rem;
+      color: #00ffaa;
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+      color: #c1fce5;
+      padding: 0 1rem;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 3rem 0;
+    }
+
+    .card {
+      width: 70%;
+      background-color: #1a1a1a;
+      border: 1px solid #00ff88;
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 0 15px #00ff88;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .card:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .audio-card-right {
+      margin-left: auto;
+      margin-right: 2rem;
+      width: 70%;
+      border-left: 3px solid #00ff88;
+      padding-left: 1.5rem;
+    }
+
+    .card img {
+      width: 50%;
+      border-radius: 10px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #00ffcc;
+      font-size: 1.8rem;
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      color: #c1fce5;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #00ff88;
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 10px #00ff88;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #00cc66;
+    }
+
+    .encrypt-btn {
+      display: block;
+      margin: 3rem auto;
+      padding: 1rem 2.5rem;
+      background-color: #00ff88;
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 15px #00ff88;
+      transition: background 0.3s ease;
+    }
+
+    .encrypt-btn:hover {
+      background-color: #00cc66;
+    }
+
+    footer {
+      background-color: #111;
+      color: #00ff88;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #00ff88;
+      box-shadow: 0 -5px 15px #00ff88;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .social-icons a {
+      color: #00ff88;
+      font-size: 1.8rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #ffffff;
+    }
+
+    .footer-text {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .logo-placeholder {
+      height: 40px;
+      width: 120px;
+      background: linear-gradient(90deg, #00ff88, #00ffaa);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #000;
+      font-size: 1rem;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body class="relative background-glow">
+
+  <!-- Header -->
+  <header>
+    <div class="logo-placeholder">SecurePath</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Text</a>
+      <a href="#">Image</a>
+      <a href="#">Audio</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section with Floating Text -->
+  <div class="w-[110%] h-[85vh] bg-blue-900 pt-10 px-4 relative top-0 left-0 z-0 flex items-start justify-center">
+    <div class="h-screen w-screen flex items-center justify-center relative z-10">
+      <h1 id="followText" class="text-xl md:text-3xl font-semibold text-white glow-text">
+        Enter The World of Secure Network
+      </h1>
+    </div>
+  </div>
+
+  <!-- JavaScript for Floating Text -->
+  <script>
+    const text = document.getElementById("followText");
+
+    document.addEventListener("mousemove", (e) => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      const offsetX = (e.clientX - centerX) * 0.05;
+      const offsetY = (e.clientY - centerY) * 0.05;
+
+      text.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    });
+
+    document.addEventListener("mouseleave", () => {
+      text.style.transform = `translate(0px, 0px)`;
+    });
+  </script>
+
+  <!-- Content Section -->
+  <h1>Media Encryption & Decryption</h1>
+
+  <div class="intro">
+    <p>This demo illustrates how various media types like images, audio, and text are encrypted and decrypted using secure algorithms. With a cyberpunk-inspired black and green aesthetic, this portal showcases next-gen security tools in an intuitive interface.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>Connect With Us</div>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+    <div class="footer-text">&copy; 2025 SecurePath. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>
